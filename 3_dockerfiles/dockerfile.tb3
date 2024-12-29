@@ -26,6 +26,7 @@ RUN cd ~/ros2_ws/src \
   && sed -i '1s/^/set(CMAKE_SUPPRESS_DEVELOPER_WARNINGS 1)\n/' CMakeLists.txt\
   && export CMAKE_PREFIX_PATH=/opt/ros/${ROS_DISTRO}:$CMAKE_PREFIX_PATH \
   && export gazebo_DIR=/opt/ros/${ROS_DISTRO}/share/gazebo \
+  && rosdep install -r --from-paths . --ignore-src --rosdistro $ROS_DISTRO -y \
   && cd ~/ros2_ws && colcon build --symlink-install
 
 #&& export TURTLEBOT3_MODEL=waffle
