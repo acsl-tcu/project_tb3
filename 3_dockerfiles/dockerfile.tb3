@@ -19,10 +19,11 @@ RUN apt update && apt install -y \
   ros-${ROS_DISTRO}-turtlebot3-msgs \
   ros-${ROS_DISTRO}-turtlebot3
 
-RUN mkdir -p ~/turtlebot3_ws/src \
-  && cd ~/turtlebot3_ws/src \
+RUN cd ~/ros2_ws/src \
   && git clone -b ${ROS_DISTRO}-devel https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git \
-  && cd ~/turtlebot3_ws && colcon build --symlink-install
+  && cd turtlebot3_simulations/turtlebot3_gazebo/ \
+  && sed -i '1s/^/set(CMAKE_SUPPRESS_DEVELOPER_WARNINGS 1)\n/' CMakeLists.txt\
+  && cd ~/ros2_ws && colcon build --symlink-install
 
 #&& export TURTLEBOT3_MODEL=waffle
 # wget -qO - https://raw.githubusercontent.com/turtlebot/turtlebot4_setup/humble/scripts/turtlebot4_setup.sh | bash
