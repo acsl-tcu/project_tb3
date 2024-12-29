@@ -9,14 +9,14 @@ SHELL [ "/bin/bash","-c" ]
 # Turtlebot system
 # Checked : 2024/04/21
 ###################################
+# https://docs.nav2.org/getting_started/index.html#getting-started
+RUN apt update && apt install \
+  ros-$ROS_DISTRO-navigation2 \
+  ros-$ROS_DISTRO-nav2-bringup \
+  ros-$ROS_DISTRO-nav2-minimal-tb*
+
 #   ros-${ROS_DISTRO}-cartographer \
 #  ros-${ROS_DISTRO}-cartographer-ros \
-
-RUN apt update && apt install -y \
-  ros-${ROS_DISTRO}-navigation2 \
-  ros-${ROS_DISTRO}-nav2-minimal-tb* \
-  ros-${ROS_DISTRO}-nav2-bringup \
-  ros-${ROS_DISTRO}-turtlebot3-gazebo 
 # ros-${ROS_DISTRO}-gazebo-* \
 # ros-${ROS_DISTRO}-ament-cmake \
 # ros-${ROS_DISTRO}-dynamixel-sdk \
