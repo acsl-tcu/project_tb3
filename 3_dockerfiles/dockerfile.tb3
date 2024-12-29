@@ -1,0 +1,28 @@
+
+ARG BASE_IMAGE
+ARG ROS_DISTRO
+FROM ${BASE_IMAGE} as exp
+
+SHELL [ "/bin/bash","-c" ]
+
+###################################
+# Turtlebot system
+# Checked : 2024/04/21
+###################################
+RUN apt update && apt install -y \
+  ros-${ROS_DISTRO}-gazebo-* \
+  ros-${ROS_DISTRO}-cartographer \
+  ros-${ROS_DISTRO}-cartographer-ros \
+  ros-${ROS_DISTRO}-navigation2 \
+  ros-${ROS_DISTRO}-nav2-bringup \
+  ros-${ROS_DISTRO}-dynamixel-sdk \
+  ros-${ROS_DISTRO}-turtlebot3-msgs \
+  ros-${ROS_DISTRO}-turtlebot3
+
+RUN mkdir -p ~/turtlebot3_ws/src \
+  && cd ~/turtlebot3_ws/src \
+  && git clone -b ${ROS_DISTRO}-devel https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git \
+  && cd ~/turtlebot3_ws && colcon build --symlink-install
+
+#&& export TURTLEBOT3_MODEL=waffle
+# wget -qO - https://raw.githubusercontent.com/turtlebot/turtlebot4_setup/humble/scripts/turtlebot4_setup.sh | bash
