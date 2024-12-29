@@ -11,6 +11,7 @@ SHELL [ "/bin/bash","-c" ]
 ###################################
 RUN apt update && apt install -y \
   ros-${ROS_DISTRO}-gazebo-* \
+  ros-${ROS_DISTRO}-ament-cmake \
   ros-${ROS_DISTRO}-cartographer \
   ros-${ROS_DISTRO}-cartographer-ros \
   ros-${ROS_DISTRO}-navigation2 \
@@ -23,6 +24,8 @@ RUN cd ~/ros2_ws/src \
   && git clone -b ${ROS_DISTRO}-devel https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git \
   && cd turtlebot3_simulations/turtlebot3_gazebo/ \
   && sed -i '1s/^/set(CMAKE_SUPPRESS_DEVELOPER_WARNINGS 1)\n/' CMakeLists.txt\
+  && export CMAKE_PREFIX_PATH=/opt/ros/${ROS_DISTRO}:$CMAKE_PREFIX_PATH \
+  && export gazebo_DIR=/opt/ros/${ROS_DISTRO}/share/gazebo \
   && cd ~/ros2_ws && colcon build --symlink-install
 
 #&& export TURTLEBOT3_MODEL=waffle
