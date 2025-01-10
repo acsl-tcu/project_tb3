@@ -6,4 +6,5 @@ export TURTLEBOT3_MODEL=burger
 #  empty_world.launch.py")
 export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/$ROS_DISTRO/share/turtlebot3_gazebo/models
 
-$(echo "exec ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py")
+#$(echo "exec ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py")
+$(echo "exec ros2 launch nav2_bringup tb3_simulation_launch.py headless:=False")
