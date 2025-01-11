@@ -4,4 +4,4 @@
 export TURTLEBOT3_MODEL=burger
 #export TURTLEBOT3_MODEL=waffle
 #  empty_world.launch.py")
-$(echo "exec ros2 run nav2_map_server map_saver_cli -f ~/map")
+$(echo "exec ros2 run nav2_map_server map_saver_cli -f /common/ros_launcher/map")
