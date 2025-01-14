@@ -10,7 +10,7 @@ SHELL [ "/bin/bash","-c" ]
 # Checked : 2024/12/29
 ###################################
 # https://docs.nav2.org/getting_started/index.html#getting-started
-RUN apt update && apt install \
+RUN apt update && apt install -y \
   ros-$ROS_DISTRO-navigation2 \
   ros-$ROS_DISTRO-nav2-bringup \
   ros-$ROS_DISTRO-nav2-minimal-tb*\
